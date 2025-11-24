@@ -41,6 +41,9 @@ app.get('/api/files/transform', filesController.transformAndServe);
 // ----------------------
 app.get('/api/files/private', filesController.servePrivateFile);
 
+// Serve public files (direct)
+app.get('/api/files/public', filesController.servePublicFile);
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled err', err);

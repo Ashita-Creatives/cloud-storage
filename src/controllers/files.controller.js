@@ -146,6 +146,32 @@ export async function servePrivateFile(req, res) {
 }
 
 /**
+ * SERVE PUBLIC FILE DIRECTLY
+ * /api/files/public?path=public/2025/11/24/uuid.png
+ */
+export async function servePublicFile(req, res) {
+  try {
+    const relativePath = req.query.path;
+    if (!relativePath) return res.status(400).json({ error: 'Missing ?path' });
+
+    const fullPath = storage.resolveFullPath(relativePath);
+
+    if (!fs.existsSync(fullPath)) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+
+    const file = await File.findOne({ storagePath: relativePath });
+    const mimeType = file?.mimeType || 'application/octet-stream';
+
+    const range = req.headers.range;
+    return storage.streamFile(res, fullPath, mimeType, range);
+  } catch (err) {
+    console.error('Public serve error:', err);
+    return res.status(500).json({ error: 'Could not serve file' });
+  }
+}
+
+/**
  * TRANSFORM IMAGE (PUBLIC OR PRIVATE)
  *
  * Route: /transform/:path(*)
