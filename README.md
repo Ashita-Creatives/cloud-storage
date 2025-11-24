@@ -236,17 +236,3 @@ location /cache/ {
     access_log off;
 }
 ```
-
-# 🧹 **Future Features (optional)**
-
-- Delete file endpoint
-- User quotas / storage limits
-- Folder-like organization
-- Video thumbnail generation (ffmpeg)
-- Chunked uploads (large files)
-- JS SDK (`cloudstorage-js`)
-
-# 🧑‍💻 **Author**
-
-Jonathan Mwebaze
-Self-hosted cloud infrastructure tools.
