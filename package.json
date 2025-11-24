@@ -1,0 +1,34 @@
+{
+  "name": "cloudstorage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "server": "nodemon src/server.js",
+    "pm2": "pm2 start src/server.js --name cloud-storage --log logs/server.log",
+    "monitor": "pm2 monit",
+    "restart": "pm2 restart src/server.js --time",
+    "stop": "pm2 stop src/server.js",
+    "logs": "pm2 logs src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mime-types": "^3.0.2",
+    "mongoose": "^9.0.0",
+    "multer": "^2.0.2",
+    "range-parser": "^1.2.1",
+    "sharp": "^0.34.5",
+    "util": "^0.12.5",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
